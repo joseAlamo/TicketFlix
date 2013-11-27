@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TicketFlixModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TicketFlixModelStoreContainer">
+          <EntitySet Name="ASIENTO" EntityType="TicketFlixModel.Store.ASIENTO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HORARIO" EntityType="TicketFlixModel.Store.HORARIO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="INVENTARIO" EntityType="TicketFlixModel.Store.INVENTARIO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCTO" EntityType="TicketFlixModel.Store.PRODUCTO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SALA" EntityType="TicketFlixModel.Store.SALA" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.Store.FK_ASIENTO_SALA">
+            <End Role="SALA" EntitySet="SALA" />
+            <End Role="ASIENTO" EntitySet="ASIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.Store.FK_HORARIO_SALA">
+            <End Role="SALA" EntitySet="SALA" />
+            <End Role="HORARIO" EntitySet="HORARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_INVENTARIO" Association="TicketFlixModel.Store.FK_PRODUCTO_INVENTARIO">
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ASIENTO">
+          <Key>
+            <PropertyRef Name="IDAsiento" />
+          </Key>
+          <Property Name="IDAsiento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Orden" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Disponiblidad" Type="bit" Nullable="false" />
+          <Property Name="IDSala" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HORARIO">
+          <Key>
+            <PropertyRef Name="IDHorario" />
+          </Key>
+          <Property Name="IDHorario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IDSala" Type="int" Nullable="false" />
+          <Property Name="Horario" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="IDInventario" />
+          </Key>
+          <Property Name="IDInventario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Name="IDProducto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Costo" Type="int" Nullable="false" />
+          <Property Name="IDInventario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALA">
+          <Key>
+            <PropertyRef Name="IDSala" />
+          </Key>
+          <Property Name="IDSala" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Película" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_ASIENTO_SALA">
+          <End Role="SALA" Type="TicketFlixModel.Store.SALA" Multiplicity="1" />
+          <End Role="ASIENTO" Type="TicketFlixModel.Store.ASIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALA">
+              <PropertyRef Name="IDSala" />
+            </Principal>
+            <Dependent Role="ASIENTO">
+              <PropertyRef Name="IDSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HORARIO_SALA">
+          <End Role="SALA" Type="TicketFlixModel.Store.SALA" Multiplicity="1" />
+          <End Role="HORARIO" Type="TicketFlixModel.Store.HORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALA">
+              <PropertyRef Name="IDSala" />
+            </Principal>
+            <Dependent Role="HORARIO">
+              <PropertyRef Name="IDSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_INVENTARIO">
+          <End Role="INVENTARIO" Type="TicketFlixModel.Store.INVENTARIO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="TicketFlixModel.Store.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INVENTARIO">
+              <PropertyRef Name="IDInventario" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDInventario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TicketFlixModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TicketFlixEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ASIENTOes" EntityType="TicketFlixModel.ASIENTO" />
+          <EntitySet Name="HORARIOs" EntityType="TicketFlixModel.HORARIO" />
+          <EntitySet Name="INVENTARIOs" EntityType="TicketFlixModel.INVENTARIO" />
+          <EntitySet Name="PRODUCTOes" EntityType="TicketFlixModel.PRODUCTO" />
+          <EntitySet Name="SALAs" EntityType="TicketFlixModel.SALA" />
+          <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.FK_ASIENTO_SALA">
+            <End Role="SALA" EntitySet="SALAs" />
+            <End Role="ASIENTO" EntitySet="ASIENTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.FK_HORARIO_SALA">
+            <End Role="SALA" EntitySet="SALAs" />
+            <End Role="HORARIO" EntitySet="HORARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_INVENTARIO" Association="TicketFlixModel.FK_PRODUCTO_INVENTARIO">
+            <End Role="INVENTARIO" EntitySet="INVENTARIOs" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ASIENTO">
+          <Key>
+            <PropertyRef Name="IDAsiento" />
+          </Key>
+          <Property Type="Int32" Name="IDAsiento" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Orden" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Disponiblidad" Nullable="false" />
+          <NavigationProperty Name="SALA" Relationship="TicketFlixModel.FK_ASIENTO_SALA" FromRole="ASIENTO" ToRole="SALA" />
+        </EntityType>
+        <EntityType Name="HORARIO">
+          <Key>
+            <PropertyRef Name="IDHorario" />
+          </Key>
+          <Property Type="Int32" Name="IDHorario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Horario1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SALA" Relationship="TicketFlixModel.FK_HORARIO_SALA" FromRole="HORARIO" ToRole="SALA" />
+        </EntityType>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="IDInventario" />
+          </Key>
+          <Property Type="Int32" Name="IDInventario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <NavigationProperty Name="PRODUCTOes" Relationship="TicketFlixModel.FK_PRODUCTO_INVENTARIO" FromRole="INVENTARIO" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Type="Int32" Name="IDProducto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Costo" Nullable="false" />
+          <NavigationProperty Name="INVENTARIO" Relationship="TicketFlixModel.FK_PRODUCTO_INVENTARIO" FromRole="PRODUCTO" ToRole="INVENTARIO" />
+        </EntityType>
+        <EntityType Name="SALA">
+          <Key>
+            <PropertyRef Name="IDSala" />
+          </Key>
+          <Property Type="Int32" Name="IDSala" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Película" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ASIENTOes" Relationship="TicketFlixModel.FK_ASIENTO_SALA" FromRole="SALA" ToRole="ASIENTO" />
+          <NavigationProperty Name="HORARIOs" Relationship="TicketFlixModel.FK_HORARIO_SALA" FromRole="SALA" ToRole="HORARIO" />
+        </EntityType>
+        <Association Name="FK_ASIENTO_SALA">
+          <End Type="TicketFlixModel.SALA" Role="SALA" Multiplicity="1" />
+          <End Type="TicketFlixModel.ASIENTO" Role="ASIENTO" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_HORARIO_SALA">
+          <End Type="TicketFlixModel.SALA" Role="SALA" Multiplicity="1" />
+          <End Type="TicketFlixModel.HORARIO" Role="HORARIO" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PRODUCTO_INVENTARIO">
+          <End Type="TicketFlixModel.INVENTARIO" Role="INVENTARIO" Multiplicity="1" />
+          <End Type="TicketFlixModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TicketFlixModelStoreContainer" CdmEntityContainer="TicketFlixEntities">
+          <EntitySetMapping Name="ASIENTOes">
+            <EntityTypeMapping TypeName="TicketFlixModel.ASIENTO">
+              <MappingFragment StoreEntitySet="ASIENTO">
+                <ScalarProperty Name="Disponiblidad" ColumnName="Disponiblidad" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="IDAsiento" ColumnName="IDAsiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HORARIOs">
+            <EntityTypeMapping TypeName="TicketFlixModel.HORARIO">
+              <MappingFragment StoreEntitySet="HORARIO">
+                <ScalarProperty Name="Horario1" ColumnName="Horario" />
+                <ScalarProperty Name="IDHorario" ColumnName="IDHorario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVENTARIOs">
+            <EntityTypeMapping TypeName="TicketFlixModel.INVENTARIO">
+              <MappingFragment StoreEntitySet="INVENTARIO">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IDInventario" ColumnName="IDInventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOes">
+            <EntityTypeMapping TypeName="TicketFlixModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALAs">
+            <EntityTypeMapping TypeName="TicketFlixModel.SALA">
+              <MappingFragment StoreEntitySet="SALA">
+                <ScalarProperty Name="Película" ColumnName="Película" />
+                <ScalarProperty Name="IDSala" ColumnName="IDSala" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ASIENTO_SALA" TypeName="TicketFlixModel.FK_ASIENTO_SALA" StoreEntitySet="ASIENTO">
+            <EndProperty Name="ASIENTO">
+              <ScalarProperty Name="IDAsiento" ColumnName="IDAsiento" />
+            </EndProperty>
+            <EndProperty Name="SALA">
+              <ScalarProperty Name="IDSala" ColumnName="IDSala" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_HORARIO_SALA" TypeName="TicketFlixModel.FK_HORARIO_SALA" StoreEntitySet="HORARIO">
+            <EndProperty Name="HORARIO">
+              <ScalarProperty Name="IDHorario" ColumnName="IDHorario" />
+            </EndProperty>
+            <EndProperty Name="SALA">
+              <ScalarProperty Name="IDSala" ColumnName="IDSala" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PRODUCTO_INVENTARIO" TypeName="TicketFlixModel.FK_PRODUCTO_INVENTARIO" StoreEntitySet="PRODUCTO">
+            <EndProperty Name="PRODUCTO">
+              <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+            </EndProperty>
+            <EndProperty Name="INVENTARIO">
+              <ScalarProperty Name="IDInventario" ColumnName="IDInventario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
