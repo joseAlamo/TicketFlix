@@ -77,6 +77,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TicketFlix.Commons\TicketFlix.Commons.csproj">
+      <Project>{4ae15677-25e8-4602-a198-cfaf7a08ae44}</Project>
+      <Name>TicketFlix.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketFlix.Data\TicketFlix.Data.csproj">
+      <Project>{d82f1d16-832a-4346-9e5d-ffd34918c542}</Project>
+      <Name>TicketFlix.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
