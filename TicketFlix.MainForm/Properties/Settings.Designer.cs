@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TicketFlix.Application.Properties
+namespace TicketFlix.MainForm.Properties
 {
 
 

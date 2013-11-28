@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlix.Data", "TicketFl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlix.Commons", "TicketFlix.Commons\TicketFlix.Commons.csproj", "{4AE15677-25E8-4602-A198-CFAF7A08AE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlix.Application", "TicketFlix.Application\TicketFlix.Application.csproj", "{868ABF40-5678-4D84-BD80-A2C73923BBA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlix.MainForm", "TicketFlix.MainForm\TicketFlix.MainForm.csproj", "{699ED647-BFDF-4FFF-954D-3B014C669C23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{4AE15677-25E8-4602-A198-CFAF7A08AE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE15677-25E8-4602-A198-CFAF7A08AE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AE15677-25E8-4602-A198-CFAF7A08AE44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{868ABF40-5678-4D84-BD80-A2C73923BBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{868ABF40-5678-4D84-BD80-A2C73923BBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{868ABF40-5678-4D84-BD80-A2C73923BBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{868ABF40-5678-4D84-BD80-A2C73923BBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699ED647-BFDF-4FFF-954D-3B014C669C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699ED647-BFDF-4FFF-954D-3B014C669C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699ED647-BFDF-4FFF-954D-3B014C669C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699ED647-BFDF-4FFF-954D-3B014C669C23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

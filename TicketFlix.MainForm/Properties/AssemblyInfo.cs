@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TicketFlix.Application")]
+[assembly: AssemblyTitle("TicketFlix.MainForm")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TicketFlix.Application")]
+[assembly: AssemblyProduct("TicketFlix.MainForm")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1bee025e-9d73-48b2-8b56-c9c286c9a51e")]
+[assembly: Guid("83b3790f-f472-4a46-b728-99945656b5e9")]
 
 // Version information for an assembly consists of the following four values:
 //
