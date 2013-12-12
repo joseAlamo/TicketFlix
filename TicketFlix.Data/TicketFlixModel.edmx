@@ -8,8 +8,6 @@
         <EntityContainer Name="TicketFlixModelStoreContainer">
           <EntitySet Name="ASIENTO" EntityType="TicketFlixModel.Store.ASIENTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HORARIO" EntityType="TicketFlixModel.Store.HORARIO" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="INVENTARIO" EntityType="TicketFlixModel.Store.INVENTARIO" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PRODUCTO" EntityType="TicketFlixModel.Store.PRODUCTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SALA" EntityType="TicketFlixModel.Store.SALA" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.Store.FK_ASIENTO_SALA">
             <End Role="SALA" EntitySet="SALA" />
@@ -18,10 +16,6 @@
           <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.Store.FK_HORARIO_SALA">
             <End Role="SALA" EntitySet="SALA" />
             <End Role="HORARIO" EntitySet="HORARIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTO_INVENTARIO" Association="TicketFlixModel.Store.FK_PRODUCTO_INVENTARIO">
-            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ASIENTO">
@@ -40,22 +34,6 @@
           <Property Name="IDHorario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IDSala" Type="int" Nullable="false" />
           <Property Name="Horario" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="INVENTARIO">
-          <Key>
-            <PropertyRef Name="IDInventario" />
-          </Key>
-          <Property Name="IDInventario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Cantidad" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PRODUCTO">
-          <Key>
-            <PropertyRef Name="IDProducto" />
-          </Key>
-          <Property Name="IDProducto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Costo" Type="int" Nullable="false" />
-          <Property Name="IDInventario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SALA">
           <Key>
@@ -88,18 +66,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PRODUCTO_INVENTARIO">
-          <End Role="INVENTARIO" Type="TicketFlixModel.Store.INVENTARIO" Multiplicity="1" />
-          <End Role="PRODUCTO" Type="TicketFlixModel.Store.PRODUCTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INVENTARIO">
-              <PropertyRef Name="IDInventario" />
-            </Principal>
-            <Dependent Role="PRODUCTO">
-              <PropertyRef Name="IDInventario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -107,8 +73,6 @@
         <EntityContainer Name="TicketFlixEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="ASIENTOes" EntityType="TicketFlixModel.ASIENTO" />
           <EntitySet Name="HORARIOs" EntityType="TicketFlixModel.HORARIO" />
-          <EntitySet Name="INVENTARIOs" EntityType="TicketFlixModel.INVENTARIO" />
-          <EntitySet Name="PRODUCTOes" EntityType="TicketFlixModel.PRODUCTO" />
           <EntitySet Name="SALAs" EntityType="TicketFlixModel.SALA" />
           <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.FK_ASIENTO_SALA">
             <End Role="SALA" EntitySet="SALAs" />
@@ -117,10 +81,6 @@
           <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.FK_HORARIO_SALA">
             <End Role="SALA" EntitySet="SALAs" />
             <End Role="HORARIO" EntitySet="HORARIOs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTO_INVENTARIO" Association="TicketFlixModel.FK_PRODUCTO_INVENTARIO">
-            <End Role="INVENTARIO" EntitySet="INVENTARIOs" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ASIENTO">
@@ -137,25 +97,8 @@
             <PropertyRef Name="IDHorario" />
           </Key>
           <Property Type="Int32" Name="IDHorario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Horario1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Horario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SALA" Relationship="TicketFlixModel.FK_HORARIO_SALA" FromRole="HORARIO" ToRole="SALA" />
-        </EntityType>
-        <EntityType Name="INVENTARIO">
-          <Key>
-            <PropertyRef Name="IDInventario" />
-          </Key>
-          <Property Type="Int32" Name="IDInventario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Cantidad" Nullable="false" />
-          <NavigationProperty Name="PRODUCTOes" Relationship="TicketFlixModel.FK_PRODUCTO_INVENTARIO" FromRole="INVENTARIO" ToRole="PRODUCTO" />
-        </EntityType>
-        <EntityType Name="PRODUCTO">
-          <Key>
-            <PropertyRef Name="IDProducto" />
-          </Key>
-          <Property Type="Int32" Name="IDProducto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Costo" Nullable="false" />
-          <NavigationProperty Name="INVENTARIO" Relationship="TicketFlixModel.FK_PRODUCTO_INVENTARIO" FromRole="PRODUCTO" ToRole="INVENTARIO" />
         </EntityType>
         <EntityType Name="SALA">
           <Key>
@@ -173,10 +116,6 @@
         <Association Name="FK_HORARIO_SALA">
           <End Type="TicketFlixModel.SALA" Role="SALA" Multiplicity="1" />
           <End Type="TicketFlixModel.HORARIO" Role="HORARIO" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_PRODUCTO_INVENTARIO">
-          <End Type="TicketFlixModel.INVENTARIO" Role="INVENTARIO" Multiplicity="1" />
-          <End Type="TicketFlixModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -196,25 +135,8 @@
           <EntitySetMapping Name="HORARIOs">
             <EntityTypeMapping TypeName="TicketFlixModel.HORARIO">
               <MappingFragment StoreEntitySet="HORARIO">
-                <ScalarProperty Name="Horario1" ColumnName="Horario" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="IDHorario" ColumnName="IDHorario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="INVENTARIOs">
-            <EntityTypeMapping TypeName="TicketFlixModel.INVENTARIO">
-              <MappingFragment StoreEntitySet="INVENTARIO">
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="IDInventario" ColumnName="IDInventario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCTOes">
-            <EntityTypeMapping TypeName="TicketFlixModel.PRODUCTO">
-              <MappingFragment StoreEntitySet="PRODUCTO">
-                <ScalarProperty Name="Costo" ColumnName="Costo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -240,14 +162,6 @@
             </EndProperty>
             <EndProperty Name="SALA">
               <ScalarProperty Name="IDSala" ColumnName="IDSala" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_PRODUCTO_INVENTARIO" TypeName="TicketFlixModel.FK_PRODUCTO_INVENTARIO" StoreEntitySet="PRODUCTO">
-            <EndProperty Name="PRODUCTO">
-              <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
-            </EndProperty>
-            <EndProperty Name="INVENTARIO">
-              <ScalarProperty Name="IDInventario" ColumnName="IDInventario" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -7,7 +7,7 @@ using TicketFlix.Commons.Entities;
 
 namespace TicketFlix.Data.Persistence
 {
-    class ASIENTOPersistence
+    public class ASIENTOPersistence
     {
         public ASIENTO Create(ASIENTO entidad)
         {
@@ -46,6 +46,26 @@ namespace TicketFlix.Data.Persistence
                 throw;
             }
             return respuesta;
+        }
+
+        public ASIENTO Update(ASIENTO entidad)
+        {
+            ASIENTO updation;
+            try
+            {
+                using (var TicketFlixEntities = new TicketFlixEntities())
+                {
+                    updation = TicketFlixEntities.ASIENTOes.Include("SALA").Single(x => x.IDAsiento == entidad.IDAsiento);
+                    TicketFlixEntities.Entry(updation).CurrentValues.SetValues(entidad);
+                    TicketFlixEntities.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                //MANEJO DE EXCEPCION
+                throw;
+            }
+            return updation;
         }
 
         public bool Delete(ASIENTO entidad)

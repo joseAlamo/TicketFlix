@@ -28,8 +28,6 @@ namespace TicketFlix.Data
     
         public DbSet<ASIENTO> ASIENTOes { get; set; }
         public DbSet<HORARIO> HORARIOs { get; set; }
-        public DbSet<INVENTARIO> INVENTARIOs { get; set; }
-        public DbSet<PRODUCTO> PRODUCTOes { get; set; }
         public DbSet<SALA> SALAs { get; set; }
     }
 }

@@ -49,6 +49,26 @@ namespace TicketFlix.Data.Persistence
             return respuesta;
         }
 
+        public HORARIO Update(HORARIO entidad)
+        {
+            HORARIO updation;
+            try
+            {
+                using (var TicketFlixEntities = new TicketFlixEntities())
+                {
+                    updation = TicketFlixEntities.HORARIOs.Include("SALA").Single(x => x.IDHorario == entidad.IDHorario);
+                    TicketFlixEntities.Entry(updation).CurrentValues.SetValues(entidad);
+                    TicketFlixEntities.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                //MANEJO DE EXCEPCION
+                throw;
+            }
+            return updation;
+        }
+
         public bool Delete(HORARIO entidad)
         {
             try

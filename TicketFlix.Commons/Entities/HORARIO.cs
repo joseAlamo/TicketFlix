@@ -15,7 +15,7 @@ namespace TicketFlix.Commons.Entities
     public partial class HORARIO
     {
         public int IDHorario { get; set; }
-        public string Horario1 { get; set; }
+        public string Horario { get; set; }
     
         public virtual SALA SALA { get; set; }
     }

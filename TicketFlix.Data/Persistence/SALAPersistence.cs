@@ -47,6 +47,26 @@ namespace TicketFlix.Data.Persistence
             return respuesta;
         }
 
+        public SALA Update(SALA entidad)
+        {
+            SALA updation;
+            try
+            {
+                using (var TicketFlixEntities = new TicketFlixEntities())
+                {
+                    updation = TicketFlixEntities.SALAs.Single(x => x.IDSala == entidad.IDSala);
+                    TicketFlixEntities.Entry(updation).CurrentValues.SetValues(entidad);
+                    TicketFlixEntities.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                //MANEJO DE EXCEPCION
+                throw;
+            }
+            return updation;
+        }
+
         public bool Delete(SALA entidad)
         {
             try

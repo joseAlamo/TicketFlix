@@ -48,8 +48,6 @@
   <ItemGroup>
     <Compile Include="Persistence\ASIENTOPersistence.cs" />
     <Compile Include="Persistence\HORARIOPersistence.cs" />
-    <Compile Include="Persistence\INVENTARIOPersistence.cs" />
-    <Compile Include="Persistence\PRODUCTOPersistence.cs" />
     <Compile Include="Persistence\SALAPersistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TicketFlixModel.Context.cs">

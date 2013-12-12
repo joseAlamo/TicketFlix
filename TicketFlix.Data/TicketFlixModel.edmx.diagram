@@ -7,12 +7,9 @@
       <Diagram DiagramId="a180ab7a1d8b4ad5ac2db680575f1c6c" Name="Diagram1">
         <EntityTypeShape EntityType="TicketFlixModel.ASIENTO" Width="1.5" PointX="4.875" PointY="6.5" />
         <EntityTypeShape EntityType="TicketFlixModel.HORARIO" Width="1.5" PointX="7.125" PointY="7.125" />
-        <EntityTypeShape EntityType="TicketFlixModel.INVENTARIO" Width="1.5" PointX="2" PointY="4.25" />
-        <EntityTypeShape EntityType="TicketFlixModel.PRODUCTO" Width="1.5" PointX="5.375" PointY="4.25" />
         <EntityTypeShape EntityType="TicketFlixModel.SALA" Width="1.5" PointX="2" PointY="6.875" />
         <AssociationConnector Association="TicketFlixModel.FK_ASIENTO_SALA" />
         <AssociationConnector Association="TicketFlixModel.FK_HORARIO_SALA" />
-        <AssociationConnector Association="TicketFlixModel.FK_PRODUCTO_INVENTARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
