@@ -50,12 +50,6 @@
     <Compile Include="Entities\HORARIO.cs">
       <DependentUpon>TicketFlixModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\INVENTARIO.cs">
-      <DependentUpon>TicketFlixModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PRODUCTO.cs">
-      <DependentUpon>TicketFlixModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\SALA.cs">
       <DependentUpon>TicketFlixModel.tt</DependentUpon>
     </Compile>

@@ -16,14 +16,12 @@ namespace TicketFlix.Commons.Entities
     {
         public SALA()
         {
-            this.ASIENTOes = new HashSet<ASIENTO>();
             this.HORARIOs = new HashSet<HORARIO>();
         }
     
         public int IDSala { get; set; }
         public string Película { get; set; }
     
-        public virtual ICollection<ASIENTO> ASIENTOes { get; set; }
         public virtual ICollection<HORARIO> HORARIOs { get; set; }
     }
 }

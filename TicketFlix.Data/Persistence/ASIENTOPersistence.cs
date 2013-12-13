@@ -16,7 +16,7 @@ namespace TicketFlix.Data.Persistence
             {
                 using (var TicketFlixEntities = new TicketFlixEntities())
                 {
-                    entidad.SALA = TicketFlixEntities.SALAs.Single(x => x.IDSala == entidad.SALA.IDSala);
+                    entidad.HORARIO = TicketFlixEntities.HORARIOs.Single(x => x.IDHorario == entidad.HORARIO.IDHorario);
                     TicketFlixEntities.ASIENTOes.Add(entidad);
                     TicketFlixEntities.SaveChanges();
                     respuesta = TicketFlixEntities.ASIENTOes.Single(x => x.IDAsiento == entidad.IDAsiento);
@@ -37,7 +37,7 @@ namespace TicketFlix.Data.Persistence
             {
                 using (var TicketFlixEntities = new TicketFlixEntities())
                 {
-                    respuesta = TicketFlixEntities.ASIENTOes.Include("SALA").Single(x => x.IDAsiento == ID);
+                    respuesta = TicketFlixEntities.ASIENTOes.Include("HORARIO").Single(x => x.IDAsiento == ID);
                 }
             }
             catch (Exception)
@@ -55,7 +55,7 @@ namespace TicketFlix.Data.Persistence
             {
                 using (var TicketFlixEntities = new TicketFlixEntities())
                 {
-                    updation = TicketFlixEntities.ASIENTOes.Include("SALA").Single(x => x.IDAsiento == entidad.IDAsiento);
+                    updation = TicketFlixEntities.ASIENTOes.Include("HORARIO").Single(x => x.IDAsiento == entidad.IDAsiento);
                     TicketFlixEntities.Entry(updation).CurrentValues.SetValues(entidad);
                     TicketFlixEntities.SaveChanges();
                 }
@@ -74,7 +74,7 @@ namespace TicketFlix.Data.Persistence
             {
                 using (var TicketFlixEntities = new TicketFlixEntities())
                 {
-                    var deletion = TicketFlixEntities.ASIENTOes.Include("SALA").Single(x => x.IDAsiento == entidad.IDAsiento);
+                    var deletion = TicketFlixEntities.ASIENTOes.Include("HORARIO").Single(x => x.IDAsiento == entidad.IDAsiento);
                     TicketFlixEntities.ASIENTOes.Remove(deletion);
                     TicketFlixEntities.SaveChanges();
                     return true;
@@ -94,7 +94,7 @@ namespace TicketFlix.Data.Persistence
             {
                 using (var TicketFlixEntities = new TicketFlixEntities())
                 {
-                    lista = TicketFlixEntities.ASIENTOes.Include("SALA").ToList<ASIENTO>();
+                    lista = TicketFlixEntities.ASIENTOes.Include("HORARIO").ToList<ASIENTO>();
                 }
             }
             catch (Exception)

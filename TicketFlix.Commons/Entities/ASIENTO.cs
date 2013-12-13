@@ -18,6 +18,6 @@ namespace TicketFlix.Commons.Entities
         public string Orden { get; set; }
         public bool Disponiblidad { get; set; }
     
-        public virtual SALA SALA { get; set; }
+        public virtual HORARIO HORARIO { get; set; }
     }
 }

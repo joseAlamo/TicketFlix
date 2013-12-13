@@ -9,8 +9,8 @@
           <EntitySet Name="ASIENTO" EntityType="TicketFlixModel.Store.ASIENTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HORARIO" EntityType="TicketFlixModel.Store.HORARIO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SALA" EntityType="TicketFlixModel.Store.SALA" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.Store.FK_ASIENTO_SALA">
-            <End Role="SALA" EntitySet="SALA" />
+          <AssociationSet Name="FK_ASIENTO_HORARIO" Association="TicketFlixModel.Store.FK_ASIENTO_HORARIO">
+            <End Role="HORARIO" EntitySet="HORARIO" />
             <End Role="ASIENTO" EntitySet="ASIENTO" />
           </AssociationSet>
           <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.Store.FK_HORARIO_SALA">
@@ -25,7 +25,7 @@
           <Property Name="IDAsiento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Orden" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Disponiblidad" Type="bit" Nullable="false" />
-          <Property Name="IDSala" Type="int" Nullable="false" />
+          <Property Name="IDHorario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HORARIO">
           <Key>
@@ -42,15 +42,15 @@
           <Property Name="IDSala" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Película" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-        <Association Name="FK_ASIENTO_SALA">
-          <End Role="SALA" Type="TicketFlixModel.Store.SALA" Multiplicity="1" />
+        <Association Name="FK_ASIENTO_HORARIO">
+          <End Role="HORARIO" Type="TicketFlixModel.Store.HORARIO" Multiplicity="1" />
           <End Role="ASIENTO" Type="TicketFlixModel.Store.ASIENTO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SALA">
-              <PropertyRef Name="IDSala" />
+            <Principal Role="HORARIO">
+              <PropertyRef Name="IDHorario" />
             </Principal>
             <Dependent Role="ASIENTO">
-              <PropertyRef Name="IDSala" />
+              <PropertyRef Name="IDHorario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -74,8 +74,8 @@
           <EntitySet Name="ASIENTOes" EntityType="TicketFlixModel.ASIENTO" />
           <EntitySet Name="HORARIOs" EntityType="TicketFlixModel.HORARIO" />
           <EntitySet Name="SALAs" EntityType="TicketFlixModel.SALA" />
-          <AssociationSet Name="FK_ASIENTO_SALA" Association="TicketFlixModel.FK_ASIENTO_SALA">
-            <End Role="SALA" EntitySet="SALAs" />
+          <AssociationSet Name="FK_ASIENTO_HORARIO" Association="TicketFlixModel.FK_ASIENTO_HORARIO">
+            <End Role="HORARIO" EntitySet="HORARIOs" />
             <End Role="ASIENTO" EntitySet="ASIENTOes" />
           </AssociationSet>
           <AssociationSet Name="FK_HORARIO_SALA" Association="TicketFlixModel.FK_HORARIO_SALA">
@@ -90,7 +90,7 @@
           <Property Type="Int32" Name="IDAsiento" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Orden" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Disponiblidad" Nullable="false" />
-          <NavigationProperty Name="SALA" Relationship="TicketFlixModel.FK_ASIENTO_SALA" FromRole="ASIENTO" ToRole="SALA" />
+          <NavigationProperty Name="HORARIO" Relationship="TicketFlixModel.FK_ASIENTO_HORARIO" FromRole="ASIENTO" ToRole="HORARIO" />
         </EntityType>
         <EntityType Name="HORARIO">
           <Key>
@@ -98,6 +98,7 @@
           </Key>
           <Property Type="Int32" Name="IDHorario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Horario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ASIENTOes" Relationship="TicketFlixModel.FK_ASIENTO_HORARIO" FromRole="HORARIO" ToRole="ASIENTO" />
           <NavigationProperty Name="SALA" Relationship="TicketFlixModel.FK_HORARIO_SALA" FromRole="HORARIO" ToRole="SALA" />
         </EntityType>
         <EntityType Name="SALA">
@@ -106,11 +107,10 @@
           </Key>
           <Property Type="Int32" Name="IDSala" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Película" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ASIENTOes" Relationship="TicketFlixModel.FK_ASIENTO_SALA" FromRole="SALA" ToRole="ASIENTO" />
           <NavigationProperty Name="HORARIOs" Relationship="TicketFlixModel.FK_HORARIO_SALA" FromRole="SALA" ToRole="HORARIO" />
         </EntityType>
-        <Association Name="FK_ASIENTO_SALA">
-          <End Type="TicketFlixModel.SALA" Role="SALA" Multiplicity="1" />
+        <Association Name="FK_ASIENTO_HORARIO">
+          <End Type="TicketFlixModel.HORARIO" Role="HORARIO" Multiplicity="1" />
           <End Type="TicketFlixModel.ASIENTO" Role="ASIENTO" Multiplicity="*" />
         </Association>
         <Association Name="FK_HORARIO_SALA">
@@ -148,12 +148,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_ASIENTO_SALA" TypeName="TicketFlixModel.FK_ASIENTO_SALA" StoreEntitySet="ASIENTO">
+          <AssociationSetMapping Name="FK_ASIENTO_HORARIO" TypeName="TicketFlixModel.FK_ASIENTO_HORARIO" StoreEntitySet="ASIENTO">
             <EndProperty Name="ASIENTO">
               <ScalarProperty Name="IDAsiento" ColumnName="IDAsiento" />
             </EndProperty>
-            <EndProperty Name="SALA">
-              <ScalarProperty Name="IDSala" ColumnName="IDSala" />
+            <EndProperty Name="HORARIO">
+              <ScalarProperty Name="IDHorario" ColumnName="IDHorario" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_HORARIO_SALA" TypeName="TicketFlixModel.FK_HORARIO_SALA" StoreEntitySet="HORARIO">

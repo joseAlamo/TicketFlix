@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a180ab7a1d8b4ad5ac2db680575f1c6c" Name="Diagram1">
-        <EntityTypeShape EntityType="TicketFlixModel.ASIENTO" Width="1.5" PointX="4.875" PointY="6.5" />
-        <EntityTypeShape EntityType="TicketFlixModel.HORARIO" Width="1.5" PointX="7.125" PointY="7.125" />
-        <EntityTypeShape EntityType="TicketFlixModel.SALA" Width="1.5" PointX="2" PointY="6.875" />
-        <AssociationConnector Association="TicketFlixModel.FK_ASIENTO_SALA" />
+        <EntityTypeShape EntityType="TicketFlixModel.ASIENTO" Width="1.5" PointX="6.25" PointY="3.125" />
+        <EntityTypeShape EntityType="TicketFlixModel.HORARIO" Width="1.5" PointX="3.625" PointY="2" />
+        <EntityTypeShape EntityType="TicketFlixModel.SALA" Width="1.5" PointX="1" PointY="0.875" />
+        <AssociationConnector Association="TicketFlixModel.FK_ASIENTO_HORARIO" />
         <AssociationConnector Association="TicketFlixModel.FK_HORARIO_SALA" />
       </Diagram>
     </edmx:Diagrams>
