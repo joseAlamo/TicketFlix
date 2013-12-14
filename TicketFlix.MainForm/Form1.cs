@@ -38,10 +38,6 @@ namespace TicketFlix.MainForm
                 cbSalas.Items.Add(sala.Película);
             }
             AsientosSeleccionados = new List<string>();
-            
-            
-            
-            
             pnDulce.Hide();
             nachos.BackColor = Color.White;
             nachos.Click += pictureDulce_Click;
@@ -60,11 +56,12 @@ namespace TicketFlix.MainForm
 
         private void cbSalas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Total = 0;
             IEnumerable<SALA> Salas;
             Salas = from s
-                        in new SALAPersistence().GetList()
-                        where s.Película == cbSalas.SelectedItem.ToString()
-                        select s;
+                    in new SALAPersistence().GetList()
+                    where s.Película == cbSalas.SelectedItem.ToString()
+                    select s;
             SALA SalaSeleccionada = new SALA();
             foreach (SALA sala in Salas)
             {
@@ -101,29 +98,12 @@ namespace TicketFlix.MainForm
                 pic.ImageLocation = @"Imagenes\asientoB.jpg";
                 AsientosSeleccionados.Remove(pic.Name);
             }
-            Total = AsientosSeleccionados.Count * 39;
+            Total += AsientosSeleccionados.Count * 39;
             lbTotal.Text = "$" + Total.ToString() + ".00";
         }
             
         private void cbHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            #region AsientosPorListBox
-            //lbxAsientos.Items.Clear();
-            ////var SalaSeleccionada = from s
-            ////                       in new SALAPersistence().GetList()
-            ////                       where s.Película == cbSalas.SelectedText
-            ////                       select s;
-
-            //var AsientoDisponible = from a
-            //                        in new ASIENTOPersistence().GetList()
-            //                        where a.SALA.Película == cbSalas.SelectedItem.ToString()
-            //                        select a;
-            //foreach (ASIENTO asiento in AsientoDisponible)
-            //{
-            //    if(asiento.Disponiblidad)
-            //        lbxAsientos.Items.Add(asiento.Orden);
-            //}
-            #endregion
             #region AsientosPorClickEnPictureBox
             pnAsientos.Refresh();
             IEnumerable<ASIENTO> ListaAsientos;
@@ -181,7 +161,7 @@ namespace TicketFlix.MainForm
             MessageBox.Show("La película es: " + pelicula + " a las " + horario + ". Tus asientos:" + asientos);
         }
         #region Dulceria
-           private void btDulce_Click(object sender, EventArgs e)
+        private void btDulce_Click(object sender, EventArgs e)
         {
             string palom = string.Empty, nac = string.Empty, sod = string.Empty;
             string tam1 = string.Empty, tam2 = string.Empty;
@@ -320,7 +300,9 @@ namespace TicketFlix.MainForm
             }
             Total += totalNacho + totalPalo + totalSod;
             lbTotal.Text = "$" + Total.ToString() + ".00";
+            pnDulce.Hide();
             #endregion
+            cbxOrden.Hide();
         }
         void pictureDulce_Click(object sender, EventArgs e)
         {
@@ -333,10 +315,9 @@ namespace TicketFlix.MainForm
             {
                 pic.BackColor = Color.White;
             }
-            //pnDulce.Hide();
-            cbxOrden.Hide();
         }
 
+        #region Imagenes
         PictureBox palomitas = new PictureBox
         {
             Name = "palomita",
@@ -366,15 +347,15 @@ namespace TicketFlix.MainForm
             SizeMode = PictureBoxSizeMode.Zoom,
             ImageLocation = @"Imagenes\nachos.png",
         };
-
+        #endregion
         #endregion
 
-        
 
-        
 
-     
 
-        
+
+
+
+
     }
 }
